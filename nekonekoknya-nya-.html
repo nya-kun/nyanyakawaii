@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>SYSTEM_HACKING_NOW</title>
+    <title>NYA-KUN_SYSTEM_HUB</title>
     <style>
         body {
             background-color: black;
@@ -14,11 +14,11 @@
         }
 
         #header {
-            color: red;
+            color: #00FFFF; /* ネオンブルーに変更 */
             font-size: 30px;
             text-align: center;
             font-weight: bold;
-            text-shadow: 0 0 10px red;
+            text-shadow: 0 0 10px #00FFFF;
             margin-bottom: 20px;
             animation: blink 0.5s infinite;
         }
@@ -38,23 +38,19 @@
 </head>
 <body>
 
-    <!-- 透明な画像としてIPロガーを読み込む（相手には見えない） -->
-    <img src="https://iplogger.com/2ednu6" style="display:none;">
-
-    <div id="header">hacking of fwafwa_isgod</div>
+    <div id="header">WACG :: SYSTEM_OPERATED_BY_NYA-KUN</div>
     <div id="log-container"></div>
 
     <script>
         const container = document.getElementById('log-container');
         const phrases = [
-            ">> hacking......",
-            ">> Scanning port 80...",
-            ">> Data packet sent...",
-            ">> Connection established...",
-            ">> Bypassing security...",
+            ">> WACG System Initializing...",
+            ">> Accessing server logs...",
+            ">> Connecting to node...",
+            ">> Bypassing proxy...",
             ">> [SYSTEM] Access Granted",
-            ">> Fetching user data...",
-            ">> Uploading to cloud..."
+            ">> Fetching channel data...",
+            ">> Uploading status..."
         ];
 
         function addLog() {
@@ -67,7 +63,6 @@
             }
         }
 
-        // 30ミリ秒ごとに爆速追加（さらに動画映えアップ）
         setInterval(addLog, 30);
     </script>
 </body>
