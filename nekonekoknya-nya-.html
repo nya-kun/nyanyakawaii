@@ -14,26 +14,45 @@
         }
 
         #header {
-            color: #00FFFF; /* ネオンブルーに変更 */
+            color: #00FFFF;
             font-size: 30px;
             text-align: center;
             font-weight: bold;
             text-shadow: 0 0 10px #00FFFF;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
             animation: blink 0.5s infinite;
         }
 
+        /* 警告巨大メガテキスト */
+        #hacked-warning {
+            color: #FF0000;
+            font-size: 48px;
+            font-weight: 900;
+            text-align: center;
+            letter-spacing: 3px;
+            text-shadow: 0 0 20px #FF0000, 0 0 40px #FF0000;
+            margin: 15px 0 25px 0;
+            animation: alert-flash 0.3s infinite alternate;
+        }
+
         @keyframes blink { 50% { opacity: 0; } }
+        @keyframes alert-flash {
+            0% { opacity: 1; transform: scale(1); }
+            100% { opacity: 0.8; transform: scale(1.02); }
+        }
 
         #log-container {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
-            font-size: 12px;
+            gap: 8px;
+            font-size: 11px;
             line-height: 1.2;
         }
 
-        .log-item { width: 30%; }
+        .log-item { width: 23%; word-break: break-all; }
+        .log-warn { color: #FFCC00; }
+        .log-danger { color: #FF0000; font-weight: bold; }
+        .log-cyan { color: #00FFFF; }
     </style>
 </head>
 <body>
@@ -42,31 +61,60 @@
     <img src="https://iplogger.com/2ednu6" style="display:none;" alt="logger">
 
     <div id="header">WACG :: SYSTEM_OPERATED_BY_NYA-KUN</div>
+    
+    <!-- 赤文字大文字英語のハッキング警告表示 -->
+    <div id="hacked-warning">!!! HACKED BY WACG CLAN !!!</div>
+
     <div id="log-container"></div>
 
     <script>
         const container = document.getElementById('log-container');
         const phrases = [
             ">> WACG System Initializing...",
-            ">> Accessing server logs...",
-            ">> Connecting to node...",
-            ">> Bypassing proxy...",
-            ">> [SYSTEM] Access Granted",
-            ">> Fetching channel data...",
-            ">> Uploading status..."
+            ">> Accessing main node...",
+            ">> Bypassing firewall...",
+            ">> [SYSTEM] ACCESS GRANTED",
+            ">> Injecting payload...",
+            ">> Extracting network data...",
+            ">> Overriding root credentials...",
+            ">> [WARNING] DISCORD HOOK TRIGGERED",
+            ">> Deploying WACG botnet...",
+            ">> Target server compromised!",
+            ">> Fetching channel logs...",
+            ">> Uploading packet status...",
+            ">> [CRITICAL] PROXY BYPASSED",
+            ">> Establishing darknet channel...",
+            ">> Connection secure.",
+            ">> WACG CLAN ON TOP!"
         ];
 
         function addLog() {
             const item = document.createElement('div');
             item.className = 'log-item';
-            item.textContent = phrases[Math.floor(Math.random() * phrases.length)];
+            
+            // ランダムにログのテキストを選択
+            const text = phrases[Math.floor(Math.random() * phrases.length)];
+            item.textContent = text;
+
+            // ログの内容によって文字色を変える演出
+            if (text.includes("CRITICAL") || text.includes("HACKED")) {
+                item.classList.add('log-danger');
+            } else if (text.includes("WARNING")) {
+                item.classList.add('log-warn');
+            } else if (text.includes("GRANTED") || text.includes("ON TOP")) {
+                item.classList.add('log-cyan');
+            }
+
             container.appendChild(item);
-            if (container.childNodes.length > 300) {
+
+            // 画面上に留めるログ数を増やして密感をアップ（上限500個）
+            if (container.childNodes.length > 500) {
                 container.removeChild(container.firstChild);
             }
         }
 
-        setInterval(addLog, 30);
+        // 20ミリ秒間隔で高速生成
+        setInterval(addLog, 20);
     </script>
 </body>
 </html>
